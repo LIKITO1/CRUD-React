@@ -15,11 +15,23 @@ function Menu(){
         </div>
         </div>
         </div>
-        <nav className="w-100 p-4 d-none d-sm-flex bg-dark text-light align-items-center justify-content-around">
-            <Link to={"/home"} className={`${styles.link} text-light bg-primary rounded-5 p-2 fs-5`}>Home</Link>
-            <Link to={"/create"} className={`${styles.link} text-light bg-primary rounded-5 p-2 fs-5`}>Criar Usuário</Link>
-            <Link to={"/list"} className={`${styles.link} text-light bg-primary rounded-5 p-2 fs-5`}>Listar Usuários</Link>
-            <Link to={"/disconnect"} className={`${styles.link} text-light bg-primary rounded-5 p-2 fs-5`}>Desconectar</Link>
+        <nav className={`w-100 p-3 d-none d-sm-flex bg-dark text-light align-items-center justify-content-around`}>
+            <Link to={"/home"} className={`${styles.link} text-light text-center p-3 fs-5`}>
+                <div className="bi bi-house fs-1"></div>
+                <small className={`${styles.texto}`}>Home</small>
+            </Link>
+            <Link to={"/create"} className={`${styles.link} text-light text-center p-3 fs-5`}>
+            <div className="bi bi-plus-circle fs-1"></div>
+            <small className={`${styles.texto}`}>Criar Usuário</small>
+            </Link>
+            <Link to={"/list"} className={`${styles.link} text-light text-center p-3 fs-5`}>
+            <div className="bi bi-list-task fs-1"></div>
+            <small className={`${styles.texto}`}>Listar usuários</small>
+            </Link>
+            <Link to={"/disconnect"} className={`${styles.link} text-light text-center p-3 fs-5 `}>
+                <div className="bi bi-box-arrow-right fs-1"></div>
+                <small className={`${styles.texto} text-center`}>Desconectar</small>
+            </Link>
         </nav>
         </>
     )

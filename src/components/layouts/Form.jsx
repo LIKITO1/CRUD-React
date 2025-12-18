@@ -1,6 +1,7 @@
 import {useState,useEffect} from "react"
 import {useParams} from "react-router-dom"
 import Card from "../layouts/Card"
+import Loading from "../layouts/Loading"
 function FormUser({title,nomeBtn,acao,nomeE,emailE,senhaE,editTipoMsg,caminho}){
     const {id}=useParams()
     const [nome,setNome]=useState("")
@@ -9,6 +10,7 @@ function FormUser({title,nomeBtn,acao,nomeE,emailE,senhaE,editTipoMsg,caminho}){
     const [tipo,setTipo]=useState("")
     const [tipoMsg,setTipoMsg]=useState("")
     const [msg,setMsg]=useState("")
+    const [display,setDisplay]=useState("block")
     useEffect(()=>{
         setNome(nomeE ||"")
         setEmail(emailE || "")
@@ -26,6 +28,7 @@ function FormUser({title,nomeBtn,acao,nomeE,emailE,senhaE,editTipoMsg,caminho}){
         }).then((response)=>response.json()).then((res)=>{
             setMsg(res.msg)
             setTipoMsg(res.tipo)
+            setDisplay("none")
         })
     }
     return(
@@ -51,7 +54,10 @@ function FormUser({title,nomeBtn,acao,nomeE,emailE,senhaE,editTipoMsg,caminho}){
             <button className="btn btn-success" onClick={enviar}>{nomeBtn}</button>
         </form>
         {msg!==""&&tipoMsg!==""&&(
+            <>
+            <Loading sumir={display}/>
             <Card tipo={tipoMsg!==""?tipoMsg:editTipoMsg} msg={msg} caminho={caminho}/>
+            </>
         )}
         </>
             )

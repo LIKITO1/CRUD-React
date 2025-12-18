@@ -1,10 +1,12 @@
 import {useParams,useNavigate} from "react-router-dom"
 import {useEffect,useState} from "react"
+import Loading from "../layouts/Loading"
 function Deletar(){
     const navigate=useNavigate()
     const {id}=useParams()
     const [tipoMsg,setTipoMsg]=useState("")
     const [msg,setMsg]=useState("")
+    const [display,setDisplay]=useState("block")
     function voltar(){
         navigate("/list")
     }
@@ -17,10 +19,8 @@ function Deletar(){
                 }
             }).then((response)=>response.json()).then((res)=>{
                 setMsg(res.msg)
-                setTipoMsg("success")
-            }).catch((err)=>{
-                setMsg("Erro ao tentar deletar o usuário")
-                setTipoMsg("danger")
+                setTipoMsg(res.tipo)
+                setDisplay("none")
             })
         }
         requisitar()
@@ -31,6 +31,7 @@ function Deletar(){
             {msg}
             <button className="btn btn-success" onClick={voltar}>Voltar</button>
         </div>
+        <Loading sumir={display}/>
         </>
     )
 }
