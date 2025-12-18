@@ -18,7 +18,7 @@ function FormUser({title,nomeBtn,acao,nomeE,emailE,senhaE,editTipoMsg,caminho}){
         e.preventDefault();
         setMsg("")
         setTipoMsg("")
-        await fetch(acao=="criar"?"http://localhost:5000/create":`http://localhost:5000/edit/${id}`,{
+        await fetch(acao=="criar"?"https://backend-crud-react.onrender.com/create":`https://backend-crud-react.onrender.com/edit/${id}`,{
             method:acao=="criar"?"POST":"PUT",
             headers:{
                 "Content-Type":"application/json"

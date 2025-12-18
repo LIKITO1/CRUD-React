@@ -10,7 +10,7 @@ function Editar(){
     const [tipoMsg,setTipoMsg]=useState("")
     useEffect(()=>{
         async function requisitar(){
-        await fetch(`http://localhost:5000/api/${id}`).then((response)=>response.json()).then((res)=>{
+        await fetch(`https://backend-crud-react.onrender.com/api/${id}`).then((response)=>response.json()).then((res)=>{
             setNome(res[0].nome||"")
             setEmail(res[0].email||"")
             setSenha(res[0].senha||"")

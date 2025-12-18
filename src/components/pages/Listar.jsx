@@ -4,7 +4,7 @@ import {Link} from "react-router-dom"
 function Listar(){
     const [dados,setDados]=useState([])
     async function requisitar(){
-        await fetch("http://localhost:5000/api",{
+        await fetch("https://backend-crud-react.onrender.com/api",{
             headers:{
                 "Conten-type":"application/json"
             },method:"GET"

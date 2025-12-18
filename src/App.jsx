@@ -6,7 +6,7 @@ function App() {
   const [logado,setLogado]=useState(false)
   async function logar(e){
     e.preventDefault()
-    await fetch("http://localhost:5000/api").then((response)=>response.json()).then((res)=>{
+    await fetch("https://backend-crud-react.onrender.com/api").then((response)=>response.json()).then((res)=>{
       res.forEach((valor)=>{
         if(!logado){
         if(valor.senha==senha&&valor.email==email){

@@ -10,7 +10,7 @@ function Deletar(){
     }
     useEffect(()=>{
         async function requisitar(){
-            await fetch(`http://localhost:5000/delete/${id}`,{
+            await fetch(`https://backend-crud-react.onrender.com/delete/${id}`,{
                 method:"DELETE",
                 headers:{
                     "Content-Type":"application/json"
