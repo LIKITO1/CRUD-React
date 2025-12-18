@@ -1,0 +1,17 @@
+.card{
+    top: 20dvh;
+    right:auto;
+    left: 10%;
+    animation: entrada ease 1s;
+    opacity: 1;
+}
+@keyframes entrada{
+    from{
+        top:0;
+        opacity: 0;
+    }
+    to{
+        top: 20dvh;
+        opacity: 1;
+    }
+}

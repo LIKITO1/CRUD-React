@@ -1,0 +1,37 @@
+import {useParams,useNavigate} from "react-router-dom"
+import {useEffect,useState} from "react"
+function Deletar(){
+    const navigate=useNavigate()
+    const {id}=useParams()
+    const [tipoMsg,setTipoMsg]=useState("")
+    const [msg,setMsg]=useState("")
+    function voltar(){
+        navigate("/list")
+    }
+    useEffect(()=>{
+        async function requisitar(){
+            await fetch(`http://localhost:5000/delete/${id}`,{
+                method:"DELETE",
+                headers:{
+                    "Content-Type":"application/json"
+                }
+            }).then((response)=>response.json()).then((res)=>{
+                setMsg(res.msg)
+                setTipoMsg("success")
+            }).catch((err)=>{
+                setMsg("Erro ao tentar deletar o usuário")
+                setTipoMsg("danger")
+            })
+        }
+        requisitar()
+    },[])
+    return(
+        <>
+        <div className={`bg-dark w-100 h-100 position-absolute gap-3 text-${tipoMsg} d-flex align-items-center justify-content-center fs-2 flex-column`}>
+            {msg}
+            <button className="btn btn-success" onClick={voltar}>Voltar</button>
+        </div>
+        </>
+    )
+}
+export default Deletar

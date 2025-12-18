@@ -1,0 +1,26 @@
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import './index.css'
+import App from './App.jsx'
+import Home from "./components/pages/Home.jsx"
+import Criar from "./components/pages/Criar.jsx"
+import Listar from "./components/pages/Listar.jsx"
+import Editar from "./components/pages/Editar.jsx"
+import Deletar from "./components/pages/Deletar.jsx"
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap-icons/font/bootstrap-icons.css";
+import {BrowserRouter as Router,Routes,Route} from "react-router-dom"
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <Router>
+      <Routes>
+        <Route element={<App/>} path='/'></Route>
+        <Route element={<Home/>} path='/home'></Route>
+        <Route element={<Criar/>} path='/create'></Route>
+        <Route element={<Listar/>} path='/list'></Route>
+        <Route element={<Editar/>} path="/edit/:id"></Route>
+        <Route element={<Deletar/>} path="/delete/:id"></Route>
+      </Routes>
+    </Router>
+  </StrictMode>,
+)
