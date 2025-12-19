@@ -20,7 +20,7 @@ function App() {
       setPermitir(false)
       return
     }
-    await fetch("http://backend-crud-react.onrender.com/api",{
+    await fetch("https://backend-crud-react.onrender.com/api",{
       method:"POST",
       headers:{
         "Content-Type":"application/json"
