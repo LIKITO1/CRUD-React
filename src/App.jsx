@@ -13,18 +13,21 @@ function App() {
   async function logar(e){
     e.preventDefault()
     setCardId((e)=>e+1)
+    setMsg("")
+    setTipoMsg("")
+    setPermitir(false)
+    setMostrarCard(false)
     await fetch("https://backend-crud-react.onrender.com/login",{
       method:"POST",
       headers:{
-        autorizar:local.getItem("token"),
+        authorization:"Bearer "+local.getItem("token"),
         "Content-Type":"application/json"
       },
       body:JSON.stringify({email:email,senha:senha})
-    }).then((response)=>response.json()).then((res)=>{
+    }).then(async(response)=>await response.json()).then((res)=>{
       setMsg(res.msg)
       setTipoMsg(res.tipo)
       setMostrarCard(false)
-      console.log(res.token)
       local.setItem("token",res.token)
       setTimeout(()=>{setMostrarCard(true)},0)
       if(res.tipo=="success"){
@@ -45,7 +48,7 @@ function App() {
         <label>Senha:</label>
         <input type="password" placeholder="Senha..." className="form-control w-25" onChange={(e)=>{setSenha(e.target.value)}}/>
         <button className="btn btn-success mt-4" onClick={logar}>Logar</button>
-        <Link to="/logar">Cadastrar</Link>
+        <Link to="/cadastrar">Cadastrar</Link>
       </form>
     </div>
     {mostrarCard&&(

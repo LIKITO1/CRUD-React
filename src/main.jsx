@@ -8,6 +8,7 @@ import Listar from "./components/pages/Listar.jsx"
 import Editar from "./components/pages/Editar.jsx"
 import Deletar from "./components/pages/Deletar.jsx"
 import Perfil from "./components/pages/Perfil.jsx"
+import Cadastrar from "./components/pages/Cadastrar.jsx"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap-icons/font/bootstrap-icons.css";
 import {BrowserRouter as Router,Routes,Route} from "react-router-dom"
@@ -22,6 +23,7 @@ createRoot(document.getElementById('root')).render(
         <Route element={<Editar/>} path="/edit/:id"></Route>
         <Route element={<Deletar/>} path="/delete/:id"></Route>
         <Route element={<Perfil/>} path="/perfil"></Route>
+        <Route element={<Cadastrar/>} path="/cadastrar"></Route>
       </Routes>
     </Router>
   </StrictMode>,

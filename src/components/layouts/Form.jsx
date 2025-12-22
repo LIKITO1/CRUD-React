@@ -11,6 +11,8 @@ function FormUser({title,nomeBtn,acao,nomeE,emailE,senhaE,editTipoMsg,caminho}){
     const [tipoMsg,setTipoMsg]=useState("")
     const [msg,setMsg]=useState("")
     const [display,setDisplay]=useState("block")
+    const [mostraId,setMostraId]=useState("")
+    const local=localStorage
     useEffect(()=>{
         setNome(nomeE ||"")
         setEmail(emailE || "")
@@ -23,13 +25,25 @@ function FormUser({title,nomeBtn,acao,nomeE,emailE,senhaE,editTipoMsg,caminho}){
         await fetch(acao=="criar"?"https://backend-crud-react.onrender.com/create":`https://backend-crud-react.onrender.com/edit/${id}`,{
             method:acao=="criar"?"POST":"PUT",
             headers:{
-                autorizar:local.getItem("token"),
+                authorization:local.getItem("token"),
                 "Content-Type":"application/json"
-            },body:JSON.stringify({nome:nome,email:email,senha:senha,tipo:tipo})
+            },body:JSON.stringify({nome,email,senha,tipo})
         }).then((response)=>response.json()).then((res)=>{
             setMsg(res.msg)
             setTipoMsg(res.tipo)
             setDisplay("none")
+        })
+    }
+    async function reset(e){
+        e.preventDefault()
+        await fetch(`https://backend-crud-react.onrender.com/reset/${id}`,{
+            headers:{
+                "Content-Type":"application/json",
+                authorization:local.getItem("token")
+            }
+        }).then((response)=>response.json()).then((valor)=>{
+            setMsg(valor.msg)
+            setTipoMsg(valor.tipo)
         })
     }
     return(
@@ -40,10 +54,10 @@ function FormUser({title,nomeBtn,acao,nomeE,emailE,senhaE,editTipoMsg,caminho}){
             <input type="text" placeholder="Nome..." className="form-control w-75" onChange={(e)=>{setNome(e.target.value)}} value={nome} required/>
             <label htmlFor="">Email:</label>
             <input type="email" placeholder="Email..." className="form-control w-75" onChange={(e)=>{setEmail(e.target.value)}} value={email} required/>
-            <label htmlFor="">Senha:</label>
-            <input type="password" placeholder="Senha..." className="form-control w-75" onChange={(e)=>{setSenha(e.target.value)}} value={senha} required/>
             {acao&&acao=="criar"&&(
-            <>
+                <>
+                <label htmlFor="">Senha:</label>
+                <input type="password" placeholder="Senha..." className="form-control w-75" onChange={(e)=>{setSenha(e.target.value)}} value={senha} required/>
                 <label htmlFor="">Tipo:</label>
                 <select className="form-select w-75 w-sm-50" onChange={(e)=>{setTipo(e.target.value)}} required>
                     <option selected disabled>Selecione o tipo de usuário</option>
@@ -52,6 +66,8 @@ function FormUser({title,nomeBtn,acao,nomeE,emailE,senhaE,editTipoMsg,caminho}){
                 </select>
             </>
             )}
+            <label>Senha:</label>
+            <button className="btn btn-danger" onClick={reset}>Resetar senha</button>
             <button className="btn btn-success" onClick={enviar}>{nomeBtn}</button>
         </form>
         {msg!==""&&tipoMsg!==""&&(

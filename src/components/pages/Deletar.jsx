@@ -7,6 +7,7 @@ function Deletar(){
     const [tipoMsg,setTipoMsg]=useState("")
     const [msg,setMsg]=useState("")
     const [display,setDisplay]=useState("block")
+    const local=localStorage;
     function voltar(){
         navigate("/list")
     }
@@ -15,7 +16,7 @@ function Deletar(){
             await fetch(`https://backend-crud-react.onrender.com/delete/${id}`,{
                 method:"DELETE",
                 headers:{
-                    autorizar:local.getItem("token"),
+                    authorization:"Bearer "+local.getItem("token"),
                     "Content-Type":"application/json"
                 }
             }).then((response)=>response.json()).then((res)=>{

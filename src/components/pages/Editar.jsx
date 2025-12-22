@@ -10,6 +10,7 @@ function Editar(){
     const [senha,setSenha]=useState("")
     const [tipoMsg,setTipoMsg]=useState("")
     const [display,setDisplay]=useState("block")
+    const local=localStorage;
     useEffect(()=>{
         async function requisitar(){
         await fetch(`https://backend-crud-react.onrender.com/api/${id}`,{
