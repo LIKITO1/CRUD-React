@@ -17,7 +17,7 @@ function App() {
     setTipoMsg("")
     setPermitir(false)
     setMostrarCard(false)
-    await fetch("https://backend-crud-react.onrender.com/login",{
+    await fetch("http://localhost:3000/login",{
       method:"POST",
       headers:{
         authorization:"Bearer "+local.getItem("token"),
@@ -29,6 +29,7 @@ function App() {
       setTipoMsg(res.tipo)
       setMostrarCard(false)
       local.setItem("token",res.token)
+      local.setItem("id_usuario",res.id)
       setTimeout(()=>{setMostrarCard(true)},0)
       if(res.tipo=="success"){
         setPermitir(true)

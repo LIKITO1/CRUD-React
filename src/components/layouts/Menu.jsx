@@ -11,6 +11,7 @@ function Menu(){
         </div>
             <div className="row gap-2">
         <Link to={"/list"} className={`${styles.link} text-light bg-primary rounded-2 p-1 fs-6 col`}>Listar Usuários</Link>
+        <Link to={"/perfil"} className={`${styles.link} text-light bg-primary rounded-2 p-1 fs-6 col`}>Perfil</Link>
         <Link to={"/disconnect"} className={`${styles.link} text-light bg-primary rounded-2 p-1 fs-6 col`}>Desconectar</Link>
         </div>
         </div>
@@ -27,6 +28,10 @@ function Menu(){
             <Link to={"/list"} className={`${styles.link} text-light text-center p-3 fs-5`}>
             <div className="bi bi-list-task fs-1"></div>
             <small className={`${styles.texto}`}>Listar usuários</small>
+            </Link>
+            <Link to={"/perfil"} className={`${styles.link} text-light text-center p-3 fs-5`}>
+            <div className="bi bi-person fs-1"></div>
+            <small className={`${styles.texto}`}>Perfil</small>
             </Link>
             <Link to={"/disconnect"} className={`${styles.link} text-light text-center p-3 fs-5 `}>
                 <div className="bi bi-box-arrow-right fs-1"></div>

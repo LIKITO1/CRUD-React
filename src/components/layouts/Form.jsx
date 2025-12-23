@@ -76,9 +76,9 @@ function FormUser({title,nomeBtn,acao,nomeE,emailE,senhaE,editTipoMsg,caminho}){
                 <>
             <label>Senha:</label>
             <button className="btn btn-danger" onClick={reset}>Resetar senha</button>
-            <button className="btn btn-success" onClick={enviar}>{nomeBtn}</button>
             </>
             )}
+            <button className="btn btn-success" onClick={enviar}>{nomeBtn}</button>
         </form>
         {msg!==""&&tipoMsg!==""&&(
             <>

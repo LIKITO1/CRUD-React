@@ -22,7 +22,7 @@ function Listar(){
     },[])
     return(
         <>
-        {!dados||dados==""&&(
+        {dados.length==0&&(
             <Loading sumir={display}/>
         )}
         <Menu/>
